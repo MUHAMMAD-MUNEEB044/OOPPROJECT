@@ -1,0 +1,22 @@
+import java.util.*;
+
+class PurchasedMedicine {
+    Medicine medicine;
+    int quantity;
+    Customer customer;
+
+    public PurchasedMedicine(Medicine med, int qty, Customer cust) {
+        this.medicine = med;
+        this.quantity = qty;
+        this.customer = cust;
+    }
+
+    public double getTotalPrice() {
+        return quantity * medicine.price;
+    }
+
+    public void processPurchase() {
+        medicine.reduceQuantity(quantity);
+        System.out.println(customer.name + " purchased " + quantity + " of " + medicine.name);
+    }
+}
