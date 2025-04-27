@@ -1,0 +1,16 @@
+import java.util.*;
+
+class Inventory {
+    ArrayList<Medicine> medicines = new ArrayList<>();
+
+    public void addMedicine(Medicine m) {
+        medicines.add(m);
+    }
+
+    public Medicine getMedicine(String name) {
+        for (Medicine m : medicines) {
+            if (m.name.equalsIgnoreCase(name)) return m;
+        }
+        return null;
+    }
+}
