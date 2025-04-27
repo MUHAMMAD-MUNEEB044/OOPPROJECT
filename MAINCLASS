@@ -1,0 +1,43 @@
+import java.util.*;
+
+public class MedicalStoresystem {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        MedicalStore store = new MedicalStore();
+
+        store.addMedicineToInventory(new Medicine("Paracetamol", 5.0, 50));
+        store.addMedicineToInventory(new Medicine("Aspirin", 3.5, 30));
+        store.addMedicineToInventory(new Medicine("Cough Syrup", 7.0, 20));
+
+        System.out.print("Enter customer name: ");
+        String name = scanner.nextLine();
+        System.out.print("Enter customer phone: ");
+        String phone = scanner.nextLine();
+        Customer customer = new Customer(name, phone);
+
+        while (true) {
+            System.out.print("Enter medicine to purchase: ");
+            String medName = scanner.nextLine();
+            System.out.print("Enter quantity: ");
+            int qty = Integer.parseInt(scanner.nextLine());
+
+            Medicine med = store.getInventory().getMedicine(medName);
+            if (med != null && med.quantity >= qty) {
+                PurchasedMedicine pm = new PurchasedMedicine(med, qty, customer);
+                customer.addPurchase(pm);
+            } else {
+                System.out.println("Medicine not available or insufficient stock.");
+            }
+
+            System.out.print("Do you want to buy more? (yes/no): ");
+            String more = scanner.nextLine();
+            if (!more.equalsIgnoreCase("yes")) break;
+        }
+
+
+        Billing billing = new Billing(customer);
+        billing.start();
+
+        scanner.close();
+    }
+}
