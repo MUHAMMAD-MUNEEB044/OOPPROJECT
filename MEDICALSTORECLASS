@@ -1,0 +1,13 @@
+import java.util.*;
+
+class MedicalStore {
+    Inventory inventory = new Inventory();
+
+    public void addMedicineToInventory(Medicine m) {
+        inventory.addMedicine(m);
+    }
+
+    public Inventory getInventory() {
+        return inventory;
+    }
+}
