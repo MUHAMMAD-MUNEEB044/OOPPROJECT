@@ -1,0 +1,9 @@
+import java.util.*;
+
+class Person {
+    String name, phone;
+    public Person(String name, String phone) {
+        this.name = name;
+        this.phone = phone;
+    }
+}
