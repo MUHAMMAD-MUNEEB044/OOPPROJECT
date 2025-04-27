@@ -1,0 +1,17 @@
+import java.util.*;
+
+class Customer extends Person {
+    ArrayList<PurchasedMedicine> purchases = new ArrayList<>();
+
+    public Customer(String name, String phone) {
+        super(name, phone);
+    }
+
+    public void addPurchase(PurchasedMedicine pm) {
+        purchases.add(pm);
+    }
+
+    public ArrayList<PurchasedMedicine> getPurchases() {
+        return purchases;
+    }
+}
