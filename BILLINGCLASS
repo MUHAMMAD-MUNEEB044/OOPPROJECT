@@ -1,0 +1,27 @@
+import java.util.*;
+
+class Billing extends Thread {
+    Customer customer;
+
+    public Billing(Customer customer) {
+        this.customer = customer;
+    }
+
+    public void run() {
+        try {
+            Thread.sleep(1000); // Simulate delay
+            System.out.println("\n--- BILL ---");
+            double total = 0;
+            for (PurchasedMedicine pm : customer.getPurchases()) {
+                pm.processPurchase();
+                double cost = pm.getTotalPrice();
+                System.out.println(pm.medicine.name + " x " + pm.quantity + " = $" + cost);
+                total += cost;
+            }
+            System.out.println("Total Bill: $" + total);
+            System.out.println("Thank you, " + customer.name + "!");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
